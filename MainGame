@@ -1,0 +1,225 @@
+import random
+import time
+
+a = None
+class Player:
+    armor = 0
+    speed = 0
+    damage = 0
+    health = 0
+
+    def __init__(self, armor, speed, damage, health):
+        self.set_data(armor, speed, damage, health)
+
+    def set_data(self, armor, damage, speed, health):
+        self.armor = armor
+        self.speed = speed
+        self.damage = damage
+        self.health = health
+
+    def get_data(self):
+        print(f'Броня: {self.armor}, Скорость: {self.speed}, Урон: {self.damage}, Здоровье: {self.health}')
+
+class Bot:
+    armor = 0
+    speed = 0
+    damage = 0
+    health = 0
+
+    def __init__(self, armor, speed, damage, health):
+        self.set_data(armor, speed, damage, health)
+
+    def set_data(self, armor, damage, speed, health):
+        self.armor = armor
+        self.speed = speed
+        self.damage = damage
+        self.health = health
+
+    def get_data(self):
+        print(f'Броня: {self.armor}, Скорость: {self.speed}, Урон: {self.damage}, Здоровье: {self.health}')
+
+
+
+player = str(input("Выберите начальный класс: " + "Воин, " "Стрелок, " "Маг. "))
+
+while player == "Воин" or "Стрелок" or "Маг":
+
+    if player == "Воин":
+        player1 = Player(
+            armor=random.randint(10, 20),
+            damage=random.randint(2, 4),
+            speed=random.randint(10, 20),
+            health=random.randint(70, 70))
+
+        print("Выбранный класс: Воин. ")
+        player1.get_data()
+        break
+
+    elif player == "Маг":
+        player1 = Player(
+            armor=random.randint(10, 20),
+            damage=random.randint(5, 7),
+            speed=random.randint(10, 20),
+            health=random.randint(45, 50))
+
+        print("Выбранный класс: Маг. ")
+        player1.get_data()
+        break
+
+    elif player == "Стрелок":
+        player1 = Player(
+            armor=random.randint(10, 20),
+            damage=random.randint(3, 5),
+            speed=random.randint(10, 20),
+            health=random.randint(50, 50))
+
+        print("Выбранный класс: Стрелок. ")
+        player1.get_data()
+        break
+
+else:
+    print("Неправильный ввод класса!")
+    time.sleep(2)
+    player = str(input("Выберите начальный класс: " + "Воин, " "Стрелок, " "Маг. "))
+    time.sleep(1)
+
+
+start = str(input("Отлично! Готовы начать игру? "))
+
+
+
+
+
+if start == "Да":
+    print("Ищем соперника...")
+    time.sleep(1)
+
+    one = "Воин"
+    two = "Стрелок"
+    three = "Маг"
+
+    lst = [one, two, three]
+
+    bot = random.choice(lst)
+
+    if bot == "Воин":
+        bot1 = Bot(
+                armor=random.randint(2, 3),
+                damage=random.randint(2, 4),
+                speed=random.randint(10, 20),
+                health=random.randint(30, 30))
+        print("Противник найден! Ваш противник: Воин")
+            # bot1.get_data()
+
+
+    elif bot == "Маг":
+        bot1 = Bot(
+                armor=random.randint(4, 6),
+                damage=random.randint(3, 6),
+                speed=random.randint(10, 20),
+                health=random.randint(10, 10))
+        print("Противник найден! Ваш противник: Маг")
+            # bot1.get_data()
+
+
+    elif bot == "Стрелок":
+        bot1 = Bot(
+                armor=random.randint(3, 4),
+                damage=random.randint(3, 4),
+                speed=random.randint(10, 20),
+                health=random.randint(12, 12))
+        print("Противник найден! Ваш противник: Стрелок! ")
+            # bot1.get_data()
+
+
+
+
+
+    while bot1.health and player1.health > 0:
+
+        case = random.randint(0, 1)
+
+        if case == 1:
+            print("Вы ходите первым! Атакуем противника...")
+            time.sleep(1)
+            bot1.health -= player1.damage
+            print("Атака успешна! У противника осталось: ", bot1.health, " здоровья")
+            time.sleep(1)
+
+        elif case == 0:
+            print("Противник ходит первым! ")
+            player1.health -= bot1.damage
+            print(f"Атака противника..: {bot1.damage} У вас осталось: {player1.health} здоровья")
+            time.sleep(1)
+
+        if player1.health <= 0:
+            print("Вы проиграли, игра окончена!")
+            break
+        elif bot1.health <= 0:
+            a = print("Победа! Враг побежден!")
+            break
+
+while a == "Победа! Враг побежден!":
+    print("Ищем соперника...")
+    time.sleep(1)
+
+    one = "Воин"
+    two = "Стрелок"
+    three = "Маг"
+
+    lst = [one, two, three]
+
+    bot = random.choice(lst)
+
+    if bot == "Воин":
+        bot1 = Bot(
+                armor=random.randint(2, 3),
+                damage=random.randint(2, 4),
+                speed=random.randint(10, 20),
+                health=random.randint(30, 30))
+        print("Противник найден! Ваш противник: Воин")
+            # bot1.get_data()
+
+
+    elif bot == "Маг":
+        bot1 = Bot(
+                armor=random.randint(4, 6),
+                damage=random.randint(3, 6),
+                speed=random.randint(10, 20),
+                health=random.randint(10, 10))
+        print("Противник найден! Ваш противник: Маг")
+            # bot1.get_data()
+
+
+    elif bot == "Стрелок":
+        bot1 = Bot(
+            armor=random.randint(3, 4),
+            damage=random.randint(3, 4),
+            speed=random.randint(10, 20),
+            health=random.randint(12, 12))
+        print("Противник найден! Ваш противник: Стрелок! ")
+            # bot1.get_data()
+
+    while bot1.health and player1.health > 0:
+
+        case = random.randint(0, 1)
+
+        if case == 1:
+            print("Вы ходите первым! Атакуем противника...")
+            time.sleep(1)
+            bot1.health -= player1.damage
+            print("Атака успешна! У противника осталось: ", bot1.health, " здоровья")
+            time.sleep(1)
+
+        elif case == 0:
+            print("Противник ходит первым! ")
+            player1.health -= bot1.damage
+            print(f"Атака противника..: {bot1.damage} У вас осталось: {player1.health} здоровья")
+            time.sleep(1)
+
+        if player1.health <= 0:
+            print("Вы проиграли, игра окончена!")
+            break
+        elif bot1.health <= 0:
+            a = print("Победа! Враг побежден!")
+            break
